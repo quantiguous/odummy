@@ -1,0 +1,19 @@
+%h3 Welcome
+= form_tag "/reply", method: "post" do
+  = label_tag 'Username', 'Username'
+  = text_field_tag :username, 'ramdev'
+  %br
+  = label_tag 'Confirmation Code', 'Confirmation Code'
+  = text_field_tag :confirmation_code, '123'
+  
+  - @params.keys.each do |p|
+    %br
+    - unless ['controller', 'action'].include?(p.to_s.downcase)
+      = label_tag p
+      = text_field_tag p, @params[p]
+  %br
+  = submit_tag "Success"
+  = submit_tag "Failure"
+
+/ %br
+/ = link_to "Failure", "#{params[:'original-url']}"
